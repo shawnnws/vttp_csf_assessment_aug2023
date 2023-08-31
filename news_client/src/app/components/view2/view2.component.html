@@ -1,0 +1,94 @@
+<h1>Share a News</h1>
+<div class="box-it">
+    <form *ngIf="myForm != null" [formGroup]="myForm" (ngSubmit)="submitForm()">
+        <table>
+
+            <tr>
+                <td>
+                    <label for="title">Title:</label>
+                </td>
+                <td>
+                    <input id="title" type="text" size="50" formControlName="title" placeholder="Enter title" required>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                  <div *ngIf="invalidFormInput('title') && myForm.controls['title'].touched">
+                    Title is required and must have at least 5 characters.
+                  </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="photo">Photo:</label>
+                </td>
+                <td>
+                    <div class="file-input-container">
+                        <input id="selectedPhotoInput" type="text" [value]="myForm.value.photo?.name || ''" readonly>
+                        <button>
+                            <label class="file-input-button">
+                                Choose File
+                                <input id="photoInput" type="file" (change)="photoUpload($event)" accept="image/*" style="display: none;">
+                            </label>
+                        </button>
+                    </div>                
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                  <div *ngIf="invalidFormInput('photo') && myForm.controls['photo'].touched">
+                    Photo is required.
+                  </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="description">Description:</label>
+                </td>
+                <td>
+                  <textarea id="description" formControlName="description" cols="40" rows="5" placeholder="Insert description" required></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                  <div *ngIf="invalidFormInput('description') && myForm.controls['description'].touched">
+                    Description is required and must have at least 5 characters.
+                  </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="tags">Tags:</label>
+                </td>
+                
+                <td>
+                    <div>
+                        <input id="tags" type="text" size="40" formControlName="tags" placeholder="Insert tags">
+                        <button type="button" (click)="onAddTag()">+</button>
+                    </div>
+                    <div>
+                        <div class="tag" *ngFor="let tag of tags">
+                            <button class="tag-button" (click)="removeTag(tag)">{{ tag }}</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button [routerLink]="['/view0']">Back</button>
+                </td>
+                <td>
+                    <button type="submit" [disabled]="!myForm.valid">Post News</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
