@@ -6,13 +6,15 @@ import { View2Component } from './components/view2/view2.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { View0Component } from './components/view0/view0.component'
+import { View0Component } from './components/view0/view0.component';
+import { View1Component } from './components/view1/view1.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     View2Component,
-    View0Component
+    View0Component,
+    View1Component
   ],
   imports: [
     BrowserModule,

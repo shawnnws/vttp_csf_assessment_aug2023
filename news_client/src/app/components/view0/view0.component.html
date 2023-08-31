@@ -1,1 +1,24 @@
-<p>view0 works!</p>
+<table>
+    <tr>
+        <td>Time:</td>
+        <td>
+            <select [(ngModel)]="selectedTime" (change)="onSelectChange()">
+                <option value="5">5 mins</option>
+                <option value="15">15 mins</option>
+                <option value="30">30 mins</option>
+                <option value="45">45 mins</option>
+                <option value="60">60 mins</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button [routerLink]="['/view2']">Post News</button>
+        </td>
+    </tr>
+</table>
+
+<h2>Tog Tags</h2>
+<p *ngFor="let tag of topTags">{{ tag.tag }} ({{tag.count}})</p>
+<p *ngIf="topTags.length ===0">No new hashtags found within the last {{ selectedTime }} minutes.</p>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tag News List</title>
+</head>
+
+<body>
+  <h1>List of news with {{ tag }}</h1>
+
+  <table>
+    <tr>
+      <td>
+        <button (click)="navigateToView0()">Back</button>
+      </td>
+      <td>
+        <button (click)="navigateToView2()">Post News</button>
+      </td>
+    </tr>
+  </table>
+
+  <div *ngFor="let tagNews of tagNewsList">
+    <table>
+      <tr>
+        <td>
+          <h2>{{ tagNews.title }}</h2>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h2>Publish Date: {{ tagNews.postDate }}</h2>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img src="{{ tagNews.image }}" alt="News Image">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>{{ tagNews.description }}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="tags">
+            <div class="tag" *ngFor="let tag of tagNews.tags">{{ tag }}</div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+
+</html>

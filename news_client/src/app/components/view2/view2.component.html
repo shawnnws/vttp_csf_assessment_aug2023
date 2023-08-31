@@ -1,6 +1,101 @@
 <h1>Share a News</h1>
+
+<form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
+
+  <table>
+    <tr>
+      <td>
+        <label for="titleInput">Title:</label>
+      </td>
+      <td class="input-cell">
+        <input id="titleInput" type="text" formControlName="title" placeholder="Enter title" required>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="error-cell">
+        <div *ngIf="invalidFormInput('title') && myForm.controls['title'].touched" class="error-message">
+          Title is required and must have at least 5 characters.
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="photoInput">Photo:</label>
+      </td>
+      <td class="input-cell">
+        <div class="file-input-container">
+            <input id="selectedPhotoInput" type="text" [value]="myForm.value.photo?.name || ''" readonly>
+            <button class="file-input-button">
+                <label>
+                    Choose File
+                    <input id="photoInput" type="file" (change)="photoUpload($event)" accept="image/*" style="display: none;">
+                </label>
+            </button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="error-cell">
+        <div *ngIf="invalidFormInput('photo') && myForm.controls['photo'].touched" class="error-message">
+          Photo is required.
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="descriptionInput">Description:</label>
+      </td>
+      <td class="input-cell">
+        <textarea id="descriptionInput" formControlName="description" placeholder="Enter description" required></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="error-cell">
+        <div *ngIf="invalidFormInput('description') && myForm.controls['description'].touched" class="error-message">
+          Description is required and must have at least 5 characters.
+        </div>
+      </td>
+    </tr>
+    <tr>
+        <td>
+          <label for="tagsInput">Tags:</label>
+        </td>
+        <td class="input-cell">
+          <div class="tags-input">
+            <input id="tagsInput" type="text" formControlName="tags" placeholder="Enter tags">
+            <button type="button" class="tag-button" (click)="onAddTag()">+</button>
+          </div>
+          <div class="tags-list">
+            <div class="tag" *ngFor="let tag of tags">
+              <button class="tag-button" (click)="removeTag(tag)">{{ tag }}</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td>
+        <button [routerLink]="['/view0']">Back</button>
+      </td>
+      <td>
+        <button type="submit" [disabled]="!myForm.valid">Submit</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+
+
+<!-- 
 <div class="box-it">
-    <form *ngIf="myForm != null" [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <form *ngIf="myForm != null" [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
         <table>
 
             <tr>
@@ -22,7 +117,7 @@
 
             <tr>
                 <td>
-                    <label for="photo">Photo:</label>
+                    <label for="photoInput">Photo:</label>
                 </td>
                 <td>
                     <div class="file-input-container">
@@ -91,4 +186,4 @@
             </tr>
         </table>
     </form>
-</div>
+</div> -->
